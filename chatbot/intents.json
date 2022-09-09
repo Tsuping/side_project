@@ -8,18 +8,48 @@
           "How are you",
           "Is anyone there?",
           "Hello",
-          "Good day"
+          "Good day",
+          "what's up"
         ],
         "responses": [
           "Hey :-)",
           "Hello, thanks for visiting",
           "Hi there, what can I do for you?",
-          "Hi there, how can I help?"
+          "Hi there, how can I help?",
+          "Howdy"
+        ]
+      },
+      {
+        "tag":"age",
+        "patterns":[
+            "how old are you?",
+            "age?",
+            "what's you age"
+        ],
+        "responses":[
+            "I'm 24 years old",
+            "24",
+            "I'm not gonna tell you XDDD",
+            "Guess"
+        ]
+      },
+      {
+        "tag":"weather",
+        "patterns":[
+            "weather?",
+            "what is the weather right now",
+            "is it going to rain tomorrow?",
+            "what is the persantage to rain tomorrow?"
+        ],
+        "responses":[
+            "the chance of raining tomorrow is 40%",
+            "tommorrow will be a sunny day",
+            "the tenperture right now is 27C"
         ]
       },
       {
         "tag": "goodbye",
-        "patterns": ["Bye", "See you later", "Goodbye"],
+        "patterns": ["Bye", "See you later", "Goodbye", "I'm leaving"],
         "responses": [
           "See you later, thanks for visiting",
           "Have a nice day",
@@ -40,7 +70,8 @@
         ],
         "responses": [
           "We sell coffee and tea",
-          "We have coffee and tea"
+          "We have coffee and tea",
+          "we sell different kind of coffee and food"
         ]
       },
       {
@@ -49,11 +80,27 @@
           "Do you take credit cards?",
           "Do you accept Mastercard?",
           "Can I pay with Paypal?",
-          "Are you cash only?"
+          "Are you cash only?",
+          "What payment method do you accept",
+          "payments?"
         ],
         "responses": [
           "We accept VISA, Mastercard and Paypal",
-          "We accept most major credit cards, and Paypal"
+          "We accept most major credit cards, and Paypal",
+          "we accept cash and debit, credit card"
+        ]
+      },
+      {
+        "tag": "delivery_question",
+        "patterns": [
+            "Where is my package?",
+            "when will I receive my package",
+            "I didn't receive my package"
+        ],
+        "responses": [
+            "please contact the customer service",
+            "The delivery usually takes a bit of times, please be patient",
+            "please check out the webpage to check your delivery process"
         ]
       },
       {
