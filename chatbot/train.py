@@ -5,6 +5,8 @@ import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 
 from nltk_util import tokenize, stem, bag_of_word
+from model import NeuralNet
+
 with open("intents.json", 'r') as f:
     intents = json.load(f)
 
@@ -42,7 +44,7 @@ class ChatDataset(Dataset):
     def __init__(self):
         self.n_samples = len(x_train)
         self.x_data = x_train
-        self.y_data - y_train
+        self.y_data = y_train
 
     def __getitem__(self, index):
         return self.x_data[index], self.y_data[index]
@@ -52,5 +54,39 @@ class ChatDataset(Dataset):
 
 batch_size = 8
 dataset = ChatDataset()
-train_loader = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True, num_workers=2)
+train_loader = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True, num_workers=0)
 
+learning_rate = 0.01
+num_epochs = 1000
+hidden_size = 8
+input_size = len(all_words)
+output_size = len(tags)
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+model = NeuralNet(input_size, hidden_size, output_size).to(device)
+
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+
+for epoch in range(num_epochs):
+    for (words, labels) in train_loader:
+        words = words.to(device)
+        labels = labels.to(dtype=torch.long).to(device)
+        
+        # Forward pass
+        outputs = model(words)
+        # if y would be one-hot, we must apply
+        # labels = torch.max(labels, 1)[1]
+        loss = criterion(outputs, labels)
+        
+        # Backward and optimize
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        
+    if (epoch+1) % 100 == 0:
+        print (f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}')
+
+
+print(f'final loss: {loss.item():.4f}')
