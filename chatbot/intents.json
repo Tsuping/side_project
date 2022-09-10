@@ -1,3 +1,5 @@
+
+
 {
     "intents": [
       {
@@ -36,15 +38,12 @@
       {
         "tag":"weather",
         "patterns":[
-            "weather?",
             "what is the weather right now",
             "is it going to rain tomorrow?",
             "what is the persantage to rain tomorrow?"
         ],
         "responses":[
-            "the chance of raining tomorrow is 40%",
-            "tommorrow will be a sunny day",
-            "the tenperture right now is 27C"
+            "please infer https://www.google.com/search?q=google+weather&rlz=1C1RXMK_enUS995US995&oq=google+weather&aqs=chrome..69i57j0i131i433i457i512j0i131i433j0i433i512j0i512l2j69i60l2.3829j1j4&sourceid=chrome&ie=UTF-8 for weather prediction"
         ]
       },
       {

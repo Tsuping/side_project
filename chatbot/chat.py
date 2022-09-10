@@ -4,6 +4,7 @@ from shutil import SameFileError
 import torch
 from model import NeuralNet
 from nltk_util import bag_of_word, tokenize
+from weather import weather_call
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -32,21 +33,25 @@ while True:
     sentence = input(f'you:')
     if sentence == "quit":
         break
-
-    sentence = tokenize(sentence)
-    x = bag_of_word(sentence, all_words)
-    x = x.reshape(1, x.shape[0])
-    x = torch.from_numpy(x).to(device)
-    output = model(x)
-    _, predict = torch.max(output, dim=1)
-    tag = tags[predict.item()]
-
-    probs = torch.softmax(output, dim = 1)
-    probs = probs[0][predict.item()]
-
-    if probs.item() > 0.6:
-        for intent in intents["intents"]:
-            if tag == intent["tag"]:
-                print(f'{bot_name}: {random.choice(intent["responses"])}')
+    if sentence == "weather?":
+        city = input("city you are looking for: ")
+        weather = weather_call(city)
+        print(bot_name, ': ', weather)
     else:
-        print(f'{bot_name}: I do not understand')
+        sentence = tokenize(sentence)
+        x = bag_of_word(sentence, all_words)
+        x = x.reshape(1, x.shape[0])
+        x = torch.from_numpy(x).to(device)
+        output = model(x)
+        _, predict = torch.max(output, dim=1)
+        tag = tags[predict.item()]
+
+        probs = torch.softmax(output, dim = 1)
+        probs = probs[0][predict.item()]
+
+        if probs.item() > 0.6:
+            for intent in intents["intents"]:
+                if tag == intent["tag"]:
+                    print(f'{bot_name}: {random.choice(intent["responses"])}')
+        else:
+            print(f'{bot_name}: I do not understand')
