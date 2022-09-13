@@ -10,7 +10,7 @@
           "How are you",
           "Is anyone there?",
           "Hello",
-          "Good day",
+          "are you having a good day?",
           "what's up"
         ],
         "responses": [
@@ -36,6 +36,20 @@
         ]
       },
       {
+        "tag":"question",
+        "patterns":[
+            "who are you?",
+            "what are you made of?",
+            "who created you?"
+        ],
+        "responses":[
+            "I'm a new born neural network chat bot",
+            "my creator named steven",
+            "I'm not gonna tell you XDDD",
+            "I have the right to not tell you"
+        ]
+      },
+      {
         "tag":"weather",
         "patterns":[
             "what is the weather right now",
@@ -48,7 +62,7 @@
       },
       {
         "tag": "goodbye",
-        "patterns": ["Bye", "See you later", "Goodbye", "I'm leaving"],
+        "patterns": ["Hope to see you soon", "Have a good one", "Have a good day!", "I have to go right now", "it's time to go", "now it is time to stop","Bye", "See you later", "Goodbye", "I'm leaving"],
         "responses": [
           "See you later, thanks for visiting",
           "Have a nice day",
@@ -119,9 +133,11 @@
         "patterns": [
           "Tell me a joke!",
           "Tell me something funny!",
-          "Do you know a joke?"
+          "Do you know a joke?",
+          "are you kidding/joking me"
         ],
         "responses": [
+          "Got you there XDDDDDDDDDD",
           "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
           "What did the buffalo say when his son left for college? Bison."
         ]
